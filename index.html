@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
+
+    <title>Wisielec</title>
+</head>
+<body>
+    <button class="start-game-btn"></button>
+
+    <div class="word-entrance-box hide">
+        <label for="word-entrance-input">Enter word to guess:</label>
+        <input id="word-entrance-input" type="text" name="word-entrance-input">
+        <button class="submit-word-btn">Submit</button>
+    </div>
+
+    <div class="draw-box hide">
+        <div class="hangman-element hangman-element-0"></div>
+        <div class="hangman-element hangman-element-1"></div>
+        <div class="hangman-element hangman-element-2"></div>
+        <div class="hangman-element hangman-element-3"></div>
+        <div class="hangman-element hangman-element-4"></div>
+        <div class="hangman-element hangman-element-5"></div>
+        <div class="hangman-element hangman-element-6"></div>
+        <div class="hangman-element hangman-element-7"></div>
+        <div class="hangman-element hangman-element-8"></div>
+        <div class="hangman-element hangman-element-9"></div>
+        <div class="hangman-element hangman-element-10"></div>
+        <div class="hangman-element hangman-element-11"></div>
+        <!-- <div class="hangman-element hangman-element-0 hide"></div>
+        <div class="hangman-element hangman-element-1 hide"></div>
+        <div class="hangman-element hangman-element-2 hide"></div>
+        <div class="hangman-element hangman-element-3 hide"></div>
+        <div class="hangman-element hangman-element-4 hide"></div>
+        <div class="hangman-element hangman-element-5 hide"></div>
+        <div class="hangman-element hangman-element-6 hide"></div>
+        <div class="hangman-element hangman-element-7 hide"></div>
+        <div class="hangman-element hangman-element-8 hide"></div>
+        <div class="hangman-element hangman-element-9 hide"></div>
+        <div class="hangman-element hangman-element-10 hide"></div>
+        <div class="hangman-element hangman-element-11 hide"></div> -->
+    </div>
+
+    <div class="letter-content-box hide">
+        <div class="correct-letters-box">
+            <!-- <div class="letter-cell">B</div> -->
+        </div>
+
+        <h2 style="color: whitesmoke">Used Letters</h2>
+        <div class="letter-storage-box">
+            <!-- <div class="used-letter">A</div> -->
+        </div>
+    </div>
+
+    <div class="win-notification notification">You Won!</div>
+    <div class="loss-notification notification">You Lost!</div>
+
+</body>
+<script src="main.js"></script>
+</html>

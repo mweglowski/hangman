@@ -1,0 +1,309 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Exo', sans-serif;
+}
+
+body {
+    background-color: rgb(62, 74, 97);
+    display: flex;
+    padding: 2rem;
+}
+
+.start-game-btn {
+    display: flex;
+    position: relative;
+    font-size: 3rem;
+    padding: 1rem 2rem;
+    background-color: rgb(75, 111, 177);
+    border: none;
+    border-radius: 10px;
+    color: whitesmoke;
+    margin: 100px auto;
+    transition: .1s;
+    width: 175px;
+    height: 96px;
+    
+    &::before {
+        content: 'Start';
+        z-index: 1;
+        position: absolute;
+        background-color: cornflowerblue;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 10px;
+        color: whitesmoke;
+        transition: .2s;
+        top: -5px;
+        left: 0px;
+    }
+
+    &:hover {
+        cursor: pointer;
+        opacity: 0.7;
+    }
+
+    &:active {
+        &::before {
+            top: 0px;
+        }
+    }
+}
+
+.word-entrance-box {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 2.5rem;
+    background-color: inherit;
+    color: white;
+    width: fit-content;
+    margin: 100px auto;
+    transition: 1s;
+
+    input {
+        margin: 1.5rem;
+        padding: .3rem;
+        font-size: 2rem;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 .2rem 0 rgb(156, 156, 156);
+        transition: .3s;
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 .2rem 0 rgb(77, 118, 251);
+        }
+    }
+
+    button {
+        display: flex;
+        position: relative;
+        font-size: 2rem;
+        padding: 1rem 2rem;
+        background-color: rgb(88, 109, 146);
+        border: none;
+        border-radius: 10px;
+        margin: auto;
+        color: whitesmoke;
+        transition: .1s;
+        
+        &::before {
+            content: 'Submit';
+            z-index: 1;
+            position: absolute;
+            background-color: rgb(78, 99, 139);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 10px;
+            color: whitesmoke;
+            transition: .2s;
+            top: -5px;
+            left: 0px;
+        }
+
+        &:hover {
+            cursor: pointer;
+            opacity: 0.7;
+        }
+
+        &:active {
+            &::before {
+                top: 0px;
+            }
+        }
+    }
+}
+
+.draw-box {
+    width: 320px;
+    height: 350px;
+    background-color: rgb(202, 205, 243);
+    border-radius: 10px;
+    position: relative;
+    z-index: 1;
+
+    .hangman-element {
+        position: absolute;
+        background-color: rgb(98, 70, 52);
+        z-index: 5;
+        width: 15px;
+        opacity: 0;
+        transition: 1s;
+    }
+
+    // Whole painting
+    .hangman-element-0 {
+        height: 200px;
+        left: 60px;
+        top: 70px;
+    }
+    .hangman-element-1 {
+        height: 60px;
+        top: 220px;
+        left: 42px;
+        transform: rotate(35deg)
+    }
+    .hangman-element-2 {
+        height: 60px;
+        top: 220px;
+        left: 78px;
+        transform: rotate(-35deg)
+    }
+    .hangman-element-3 {
+        height: 60px;
+        top: 55px;
+        left: 80px;
+        transform: rotate(45deg)
+    }
+    .hangman-element-4 {
+        height: 190px;
+        top: -30px;
+        left: 148px;
+        transform: rotate(90deg)
+    }
+    .hangman-element-5 {
+        background-color: rgb(160, 118, 92);
+        width: 5px;
+        height: 70px;
+        top: 60px;
+        left: 230px;
+        z-index: 4;
+    }
+    .hangman-element-6 {
+        background-color: rosybrown;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        top: 120px;
+        left: 215px;
+    }
+    .hangman-element-7 {
+        background-color: rgb(77, 118, 251);
+        width: 10px;
+        height: 64px;
+        top: 135px;
+        left: 228px;
+        z-index: 4
+    }
+    .hangman-element-8 {
+        background-color: rgb(77, 118, 251);
+        width: 10px;
+        height: 45px;
+        top: 150px;
+        left: 215px;
+        transform: rotate(35deg);
+        z-index: 4;
+    }
+    .hangman-element-9 {
+        background-color: rgb(77, 118, 251);
+        width: 10px;
+        height: 45px;
+        top: 150px;
+        left: 241px;
+        transform: rotate(-35deg);
+        z-index: 4;
+    }
+    .hangman-element-10 {
+        background-color: rgb(48, 74, 158);
+        width: 10px;
+        height: 45px;
+        top: 195px;
+        left: 215px;
+        transform: rotate(35deg);
+        z-index: 3;
+    }
+    .hangman-element-11 {
+        background-color: rgb(48, 74, 158);
+        width: 10px;
+        height: 45px;
+        top: 195px;
+        left: 241px;
+        transform: rotate(-35deg);
+        z-index: 3;
+    }
+}
+
+.letter-content-box {
+    display: flex;
+    flex-direction: column;
+    padding: 3rem;
+
+    .correct-letters-box {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 3rem auto;
+        
+        .letter-cell {
+            display: flex;
+            width: 50px;
+            height: 50px;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            color: whitesmoke;
+            border-bottom: 3px solid whitesmoke;
+            margin: .5rem;
+            transition: 1s;
+        }
+    }
+
+    .letter-storage-box {
+        display: flex;
+        flex-wrap: wrap;
+        width: 356px;
+        border-radius: 10px;
+        transition: 1s;
+        gap: .5rem;
+        padding: .5rem;
+    
+        .used-letter {
+            display: flex;
+            width: 50px;
+            height: 50px;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            color: whitesmoke;
+            border-radius: 10px;
+            box-shadow: 0 0 .2rem whitesmoke;
+            transition: 1s;
+        }
+    }
+}
+
+// Notifications
+.notification {
+    z-index: 10;
+    position: absolute;
+    font-size: 2rem;
+    color: whitesmoke;
+    background-color: cornflowerblue;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 10px;
+    color: whitesmoke;
+    transition: .5s;
+    left: 40%;
+    top: -200px;
+}
+
+.win-notification {
+    background-color: rgb(24, 180, 128);
+}
+
+.loss-notification {
+    background-color: rgb(233, 156, 85);
+}
+
+/* Dynamic Classes */
+.hide {
+    display: none;
+    opacity: 1;
+    transition: 1s;
+}
+
+.hide-breath {
+    opacity: 0;
+}
