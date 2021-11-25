@@ -17,6 +17,8 @@ let state = {
     ready: false
 }
 
+const allowedCharacters = 'qwertyuiopasdfghjklzxcvbnm1234567890'
+
 // Start Game
 startGameButton.addEventListener('click', (event) => {
     // Hide start game button
@@ -47,9 +49,12 @@ function submitWordAndPerformActions() {
 
         if (wordEntranceInput.value === '') return
 
-        // Set word to guess
-        state.wordToGuess = wordEntranceInput.value
-        console.log(`state changed:\nwordToGuess = ${wordEntranceInput.value}`)
+        // Set word to guess, clear whitespaces from the beginning and capitalize letters
+        while (state.wordToGuess[0] === ' ') {
+            state.wordToGuess = state.wordToGuess.slice(1)
+        }
+
+        state.wordToGuess = wordEntranceInput.value.toUpperCase()
 
         // Clear and hide entranceBox
         wordEntranceInput.value = ''
@@ -64,23 +69,32 @@ function submitWordAndPerformActions() {
             letterCell.classList.add('letter-cell')
             letterCell.dataset.letter = letter
 
+            if (letter === ' ') {
+                letterCell.style.border = 'none'
+                letterCell.dataset.space = 'true'
+            } else {
+                letterCell.dataset.space = 'false'
+            }
+
             correctLettersBox.appendChild(letterCell)
         }
 
         // Listen to keydowns if specific key is pressed, then specific action is made
         // If wordToGuess includes pressed letter then specific box in list is filled with this letter, otherwise another element of hangman is painted and new letter(if there wasn't previously) is appended to storage box for used letters
         window.addEventListener('keydown', (event) => {
+            let key = event.key.toUpperCase()
+
             // If user win this keydown handlers will be desactivated 
-            if (!state.ready) return
+            if (!state.ready || !allowedCharacters.includes(event.key)) return
 
             state.attempts += 1
             
-            if (!checkIfLetterIsUsed(event.key)) {
+            if (!checkIfLetterIsUsed(key)) {
                 // Update used letters in state
-                state.usedLetters.push(event.key)
+                state.usedLetters.push(key)
 
-                if (state.wordToGuess.includes(event.key)) {
-                    fillSpecificCellsWithLetters(event.key)
+                if (state.wordToGuess.includes(key)) {
+                    fillSpecificCellsWithLetters(key)
                 } else {
                     state.incorrectTries += 1
                     state.incorrectTries === 12 && showLoss() 
@@ -88,7 +102,7 @@ function submitWordAndPerformActions() {
                     drawHangman()
                 }
         
-                appendLetterToLetterStorageBox(event.key)
+                appendLetterToLetterStorageBox(key)
             } else {
                 console.log('you tried this letter')
             }
@@ -126,7 +140,11 @@ function fillSpecificCellsWithLetters(correctLetter) {
 function checkForWin() {
     let everyFilled = true
     const correctLettersBoxChildren = Array.from(correctLettersBox.children)
+
     for (let i = 0; i < correctLettersBoxChildren.length; i++) {
+        if (correctLettersBoxChildren[i].dataset.space === 'true') {
+            continue
+        }
         if (correctLettersBoxChildren[i].textContent === '') {
             everyFilled = false
             break
