@@ -1,2 +1,2 @@
-# hangman.github.io
+# Hangman Game
 ➰ Simple Hangman Game 
